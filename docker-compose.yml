@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:latest
+    user: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: persons
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    restart: always
+  redis:
+    image: redislabs/redismod
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/data
+    restart: always
